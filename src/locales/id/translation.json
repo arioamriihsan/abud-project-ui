@@ -1,5 +1,12 @@
 {
+  "auth": {
+    "minPassword": "Password harus mengandung minimal 8 karakter",
+    "requiredUsername": "Nama Akun harus diisi",
+    "requiredPassword": "Kata Sandi harus diisi"
+  },
   "common": {
+    "error": "Terjadi Kesalahan",
+    "lock": "Kunci Akun",
     "login": "Masuk Akun",
     "userName": "Nama Akun",
     "requiredField": "Field harus diisi!",

@@ -5,6 +5,7 @@ export interface UserModel {
   email: string;
   phone?: string;
   date_of_birth?: Date;
+  background_color: string;
   status: number;
   has_changed_password: number;
   role: number;

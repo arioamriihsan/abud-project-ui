@@ -13,11 +13,6 @@ interface LoginFormData {
   password: string;
 }
 
-export const initValues: LoginFormData = {
-  username: 'super-admin',
-  password: 'superadmin123',
-};
-
 export const LoginForm: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -29,14 +24,9 @@ export const LoginForm: React.FC = () => {
     setLoading(true);
     dispatch(doLogin(values))
       .unwrap()
-      .then((data) => {
-        console.log({ data });
-        navigate('/');
-      })
-      .catch((err) => {
-        notificationController.error({ message: err.message });
-        setLoading(false);
-      });
+      .then(() => navigate('/'))
+      .catch((err) => notificationController.error({ message: err.message }))
+      .finally(() => setLoading(false));
   };
 
   return (
@@ -47,14 +37,17 @@ export const LoginForm: React.FC = () => {
         <Auth.FormItem
           name="username"
           label={t('common.userName')}
-          rules={[{ required: true, message: t('common.requiredField') }]}
+          rules={[{ required: true, message: t('auth.requiredUsername') }]}
         >
           <Auth.FormInput placeholder={t('common.userName')} />
         </Auth.FormItem>
         <Auth.FormItem
           name="password"
           label={t('common.password')}
-          rules={[{ required: true, message: t('common.requiredField') }]}
+          rules={[
+            { required: true, message: t('auth.requiredPassword') },
+            { min: 8, message: t('auth.minPassword') },
+          ]}
         >
           <Auth.FormInputPassword placeholder={t('common.password')} />
         </Auth.FormItem>
