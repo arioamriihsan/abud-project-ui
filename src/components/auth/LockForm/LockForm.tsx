@@ -72,7 +72,10 @@ export const LockForm: React.FC = () => {
         <S.FormItem
           label={t('common.password')}
           name="password"
-          rules={[{ required: true, message: t('common.requiredField') }]}
+          rules={[
+            { required: true, message: t('auth.requiredPassword') },
+            { min: 8, message: t('auth.minPassword') },
+          ]}
         >
           <Auth.FormInputPassword placeholder={t('common.password')} />
         </S.FormItem>
