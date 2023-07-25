@@ -1,5 +1,6 @@
 {
   "common": {
+    "lock": "Kunci",
     "login": "Masuk Akun",
     "userName": "Nama Akun",
     "requiredField": "Field harus diisi!",
