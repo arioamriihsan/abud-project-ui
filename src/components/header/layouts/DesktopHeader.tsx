@@ -5,6 +5,7 @@ import { ProfileDropdown } from '../components/profileDropdown/ProfileDropdown/P
 import { HeaderSearch } from '../components/HeaderSearch/HeaderSearch';
 import { SettingsDropdown } from '../components/settingsDropdown/SettingsDropdown';
 import { HeaderFullscreen } from '../components/HeaderFullscreen/HeaderFullscreen';
+import { LockAccount } from '../components/lockAccount/LockAccount';
 import * as S from '../Header.styles';
 
 interface DesktopHeaderProps {
@@ -44,6 +45,10 @@ export const DesktopHeader: React.FC<DesktopHeaderProps> = ({ isTwoColumnsLayout
             <Row gutter={[{ xxl: 10 }, { xxl: 10 }]}>
               <Col>
                 <HeaderFullscreen />
+              </Col>
+
+              <Col>
+                <LockAccount />
               </Col>
 
               <Col>

@@ -5,6 +5,7 @@ import { ProfileDropdown } from '../components/profileDropdown/ProfileDropdown/P
 import { HeaderSearch } from '../components/HeaderSearch/HeaderSearch';
 import { SettingsDropdown } from '../components/settingsDropdown/SettingsDropdown';
 import * as S from '../Header.styles';
+import { LockAccount } from '../components/lockAccount/LockAccount';
 
 interface MobileHeaderProps {
   toggleSider: () => void;
@@ -20,6 +21,10 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({ toggleSider, isSider
 
       <Col>
         <Row align="middle">
+          <Col>
+            <LockAccount />
+          </Col>
+
           <Col>
             <NotificationsDropdown />
           </Col>
