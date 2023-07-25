@@ -13,11 +13,6 @@ interface LoginFormData {
   password: string;
 }
 
-export const initValues: LoginFormData = {
-  username: 'super-admin',
-  password: 'superadmin123',
-};
-
 export const LoginForm: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -29,8 +24,7 @@ export const LoginForm: React.FC = () => {
     setLoading(true);
     dispatch(doLogin(values))
       .unwrap()
-      .then((data) => {
-        console.log({ data });
+      .then(() => {
         navigate('/');
       })
       .catch((err) => {

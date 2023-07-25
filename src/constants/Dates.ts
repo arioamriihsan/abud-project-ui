@@ -2,7 +2,7 @@ import dayjs, { Dayjs } from 'dayjs';
 import LocalizedFormat from 'dayjs/plugin/localizedFormat';
 import localeData from 'dayjs/plugin/localeData';
 import isBetween from 'dayjs/plugin/isBetween';
-import 'dayjs/locale/de';
+import 'dayjs/locale/id';
 
 dayjs.extend(LocalizedFormat);
 dayjs.extend(localeData);
@@ -35,7 +35,11 @@ export class Dates {
     return dayjs(date);
   }
 
-  static format(date: AppDate | string | number, query: string): string {
+  static format(date: AppDate | string | number, query: string, locale?: string): string {
+    if (!!locale) {
+      this.setLocale(locale);
+    }
+
     if (typeof date === 'string' || typeof date === 'number') {
       return dayjs(date).format(query);
     } else {
