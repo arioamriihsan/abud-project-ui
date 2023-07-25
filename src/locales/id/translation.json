@@ -1,0 +1,18 @@
+{
+  "common": {
+    "login": "Masuk Akun",
+    "userName": "Nama Akun",
+    "requiredField": "Field harus diisi!",
+    "password": "Kata Sandi"
+  },
+  "header": {
+    "changeLanguage": "Ubah bahasa",
+    "changeTheme": "Ubah tema",
+    "darkTheme": "Gelap",
+    "lightTheme": "Terang",
+    "logout": "Keluar"
+  },
+  "login": {
+    "loginInfo": "Masukkan nama akun dan kata sandi kamu untuk masuk ke panel admin"
+  }
+}
