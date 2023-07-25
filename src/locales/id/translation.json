@@ -14,5 +14,8 @@
   },
   "login": {
     "loginInfo": "Masukkan nama akun dan kata sandi kamu untuk masuk ke panel admin"
+  },
+  "profile": {
+    "title": "Profil"
   }
 }
