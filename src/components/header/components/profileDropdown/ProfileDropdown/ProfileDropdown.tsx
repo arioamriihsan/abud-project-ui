@@ -12,18 +12,21 @@ export const ProfileDropdown: React.FC = () => {
   const { isTablet } = useResponsive();
 
   const user = useAppSelector((state) => state.user.user);
+  const fullName = user?.full_name ?? '';
+  const username = user?.username ?? '';
+  const userBackgroundColor = user?.background_color ?? '';
 
   return user ? (
     <Dropdown overlay={<ProfileOverlay />} trigger={['click']}>
       <S.ProfileDropdownHeader as={Row} gutter={[10, 10]} align="middle">
         <Col>
-          <Avatar alt={user.username} shape="circle" size={40}>
-            {getInitials(user.full_name)}
-          </Avatar>
+          <S.ProfileAvatar backgroundColor={userBackgroundColor} alt={username} shape="circle" size={40}>
+            {getInitials(fullName)}
+          </S.ProfileAvatar>
         </Col>
         {isTablet && (
           <Col>
-            <H6>{shortenName(user.full_name)}</H6>
+            <H6>{shortenName(fullName)}</H6>
           </Col>
         )}
       </S.ProfileDropdownHeader>
