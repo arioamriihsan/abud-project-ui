@@ -24,7 +24,7 @@ export const LockForm: React.FC = () => {
   const [isLoading, setLoading] = useState(false);
   const [dateState, setDateState] = useState(new Date());
 
-  const user = useAppSelector((state) => state.user.user);
+  const user = useAppSelector((state) => state.user.profile);
   const fullName = user?.full_name ?? '';
   const username = user?.username ?? '';
   const userBackgroundColor = user?.background_color ?? '';

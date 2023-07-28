@@ -11,7 +11,7 @@ import * as S from './ProfileDropdown.styles';
 export const ProfileDropdown: React.FC = () => {
   const { isTablet } = useResponsive();
 
-  const user = useAppSelector((state) => state.user.user);
+  const user = useAppSelector((state) => state.user.profile);
   const fullName = user?.full_name ?? '';
   const username = user?.username ?? '';
   const userBackgroundColor = user?.background_color ?? '';
