@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
   ResetPasswordRequest,
   login,
@@ -12,15 +12,11 @@ import {
   setNewPassword,
 } from '@app/api/auth.api';
 import { setUser } from '@app/store/slices/userSlice';
-import { deleteToken, deleteUser, persistToken, readToken } from '@app/services/localStorage.service';
+import { deleteToken, deleteUser, persistToken } from '@app/services/localStorage.service';
 
 export interface AuthSlice {
   token: string | null;
 }
-
-const initialState: AuthSlice = {
-  token: readToken(),
-};
 
 export const doLogin = createAsyncThunk('auth/doLogin', async (loginPayload: LoginRequest, { dispatch }) =>
   login(loginPayload).then((res) => {
@@ -54,19 +50,3 @@ export const doLogout = createAsyncThunk('auth/doLogout', (payload, { dispatch }
   deleteUser();
   dispatch(setUser(null));
 });
-
-const authSlice = createSlice({
-  name: 'auth',
-  initialState,
-  reducers: {},
-  extraReducers: (builder) => {
-    builder.addCase(doLogin.fulfilled, (state, action) => {
-      state.token = action.payload;
-    });
-    builder.addCase(doLogout.fulfilled, (state) => {
-      state.token = '';
-    });
-  },
-});
-
-export default authSlice.reducer;
