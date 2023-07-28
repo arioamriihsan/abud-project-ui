@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Avatar } from 'antd';
 import { UserModel } from '@app/domain/UserModel';
+import { useResponsive } from '@app/hooks/useResponsive';
+import { getInitials } from '@app/utils/utils';
 import * as S from './ProfileInfo.styles';
 
 interface ProfileInfoProps {
@@ -12,14 +13,20 @@ export const ProfileInfo: React.FC<ProfileInfoProps> = ({ profileData }) => {
   const [fullness] = useState(90);
 
   const { t } = useTranslation();
+  const { isDesktop } = useResponsive();
+
+  const fullName = profileData?.full_name ?? '';
+  const username = profileData?.username ?? '';
 
   return profileData ? (
     <S.Wrapper>
       <S.ImgWrapper>
-        <Avatar shape="circle" src={process.env.REACT_APP_ASSETS_BUCKET + '/avatars/avatar5.webp'} alt="Profile" />
+        <S.AvatarCircle size={isDesktop ? 160 : 100} shape="circle" alt="Profile">
+          {getInitials(fullName)}
+        </S.AvatarCircle>
       </S.ImgWrapper>
-      <S.Title>{profileData?.full_name}</S.Title>
-      <S.Subtitle>{profileData?.username}</S.Subtitle>
+      <S.Title>{fullName}</S.Title>
+      <S.Subtitle>{username}</S.Subtitle>
       <S.FullnessWrapper>
         <S.FullnessLine width={fullness}>{fullness}%</S.FullnessLine>
       </S.FullnessWrapper>

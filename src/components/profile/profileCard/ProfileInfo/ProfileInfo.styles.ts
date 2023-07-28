@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Typography } from 'antd';
+import { Typography, Avatar } from 'antd';
 import { media } from '@app/styles/themes/constants';
 
 interface FullnessLineProps {
@@ -37,9 +37,26 @@ export const ImgWrapper = styled.div`
     margin: 5px;
     width: calc(100% - 10px);
     height: calc(100% - 10px);
+    transform: none;
 
     @media only screen and ${media.xl} {
       margin: 7px;
+    }
+  }
+`;
+
+export const AvatarCircle = styled(Avatar)`
+  background: transparent;
+  color: var(--white);
+
+  & > span {
+    font-size: 1.125rem;
+    font-weight: 700;
+    letter-spacing: 0.12rem;
+
+    @media only screen and ${media.xl} {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
     }
   }
 `;

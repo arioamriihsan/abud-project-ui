@@ -35,15 +35,10 @@ export class Dates {
     return dayjs(date);
   }
 
-  static format(date: AppDate | string | number, query: string, locale?: string): string {
-    if (!!locale) {
-      this.setLocale(locale);
-    }
-
+  static format(date: AppDate | string | number, query: string): string {
     if (typeof date === 'string' || typeof date === 'number') {
       return dayjs(date).format(query);
-    } else {
-      return date.format(query);
     }
+    return date.format(query);
   }
 }
