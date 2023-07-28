@@ -669,14 +669,10 @@
         "language": "Language",
         "male": "Male",
         "nickname": "Nickname",
-        "notValidWebsite": "Please input a valid URL!",
         "notVerified": "Not verified",
-        "otherInfo": "Other info",
         "sex": "Sex",
-        "socialLinks": "Social links",
         "title": "Personal Info",
         "verified": "Verified",
-        "website": "Website",
         "wrongNumber": "Wrong number"
       },
       "securitySettings": {
@@ -691,6 +687,9 @@
         "title": "Security Settings",
         "twoFactorAuth": "Two–factor authentication",
         "verify": "Verify"
+      },
+      "schedule": {
+        "title": "My Schedule"
       }
     },
     "title": "Profile"

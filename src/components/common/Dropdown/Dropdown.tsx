@@ -4,7 +4,7 @@ import * as S from './Dropdown.styles';
 
 export const Dropdown: React.FC<DropDownProps> = ({ children, ...props }) => {
   return (
-    <S.Dropdown getPopupContainer={(triggerNode) => triggerNode} {...props}>
+    <S.Dropdown arrow getPopupContainer={(triggerNode) => triggerNode} {...props}>
       {children}
     </S.Dropdown>
   );

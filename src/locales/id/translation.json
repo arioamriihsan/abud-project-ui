@@ -6,11 +6,13 @@
   },
   "common": {
     "error": "Terjadi Kesalahan",
+    "firstName": "Nama Depan",
+    "lastName": "Nama Akhir",
     "lock": "Kunci Akun",
     "login": "Masuk Akun",
+    "password": "Kata Sandi",
     "userName": "Nama Akun",
-    "requiredField": "Field harus diisi!",
-    "password": "Kata Sandi"
+    "requiredField": "Field harus diisi!"
   },
   "header": {
     "changeLanguage": "Ubah bahasa",
@@ -23,6 +25,31 @@
     "loginInfo": "Masukkan nama akun dan kata sandi kamu untuk masuk ke panel admin"
   },
   "profile": {
+    "fullness": "kelengkapan profil kamu",
+    "nav": {
+      "notifications": {
+        "title": "Notifikasi"
+      },
+      "personalInfo": {
+        "birthday": "Ulang Tahun",
+        "contactInfo": "Info Kontak",
+        "female": "Perempuan",
+        "language": "Bahasa",
+        "male": "Laki-laki",
+        "nickname": "Nama Panggilan",
+        "notVerified": "Belum Terverifikasi",
+        "sex": "Kelamin",
+        "title": "Informasi Pribadi",
+        "verified": "Terverifikasi",
+        "wrongNumber": "Nomor salah"
+      },
+      "securitySettings": {
+        "title": "Keamanan"
+      },
+      "schedule": {
+        "title": "Jadwal Saya"
+      }
+    },
     "title": "Profil"
   }
 }

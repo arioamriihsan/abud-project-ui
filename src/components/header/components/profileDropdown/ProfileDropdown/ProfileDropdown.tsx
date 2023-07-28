@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar, Col, Row } from 'antd';
+import { Col, Row } from 'antd';
 import { Dropdown } from '@app/components/common/Dropdown/Dropdown';
 import { H6 } from '@app/components/common/typography/H6/H6';
 import { ProfileOverlay } from '../ProfileOverlay/ProfileOverlay';
