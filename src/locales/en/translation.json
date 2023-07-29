@@ -20,6 +20,7 @@
     "warningDescription": "This is a warning notice about copywriting."
   },
   "auth": {
+    "greeting": "Welcome",
     "minPassword": "Password must have contain at least 8 characters",
     "requiredUsername": "Username is required",
     "requiredPassword": "Password is required",
@@ -681,7 +682,7 @@
         "currentPassword": "Current Password",
         "dontMatchPassword": "The two passwords that you entered do not match",
         "newPassword": "New Password",
-        "notValidPassword": "Your password should be minimum eight characters and contain at least one uppercase letter, one lowercase letter and one number",
+        "notValidPassword": "Your password should be minimum 8 characters",
         "requiredPassword": "Please input your password!",
         "samePassword": "Your new password can't be same as previous password",
         "title": "Security Settings",

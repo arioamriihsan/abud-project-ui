@@ -1,10 +1,12 @@
 {
   "auth": {
+    "greeting": "Selamat datang",
     "minPassword": "Password harus mengandung minimal 8 karakter",
     "requiredUsername": "Nama Akun harus diisi",
     "requiredPassword": "Kata Sandi harus diisi"
   },
   "common": {
+    "confirm": "Konfirmasi",
     "error": "Terjadi Kesalahan",
     "firstName": "Nama Depan",
     "lastName": "Nama Akhir",
@@ -44,7 +46,16 @@
         "wrongNumber": "Nomor salah"
       },
       "securitySettings": {
-        "title": "Keamanan"
+        "changePassword": "Ubah Kata Sandi",
+        "confirmPassword": "Konfirmasi Kata Sandi",
+        "currentPassword": "Kata Sandi Lama",
+        "dontMatchPassword": "Kedua Kata Sandi yang kamu masukkan tidak cocok",
+        "newPassword": "Kata Sandi Baru",
+        "notValidPassword": "Kata Sandi minimal 8 karakter",
+        "requiredPassword": "Masukkan Kata Sandi!",
+        "samePassword": "Kata Sandi baru kamu sama dengan Kata Sandi sebelumnya",
+        "title": "Keamanan",
+        "verify": "Verify"
       },
       "schedule": {
         "title": "Jadwal Saya"
