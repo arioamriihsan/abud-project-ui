@@ -10,9 +10,11 @@ import {
   SecurityCodePayload,
   NewPasswordData,
   setNewPassword,
+  logout,
 } from '@app/api/auth.api';
 import { setUser } from '@app/store/slices/userSlice';
 import { deleteToken, deleteUser, persistToken } from '@app/services/localStorage.service';
+import { notificationController } from '@app/controllers/notificationController';
 
 export interface AuthSlice {
   token: string | null;
@@ -23,7 +25,7 @@ export const doLogin = createAsyncThunk('auth/doLogin', async (loginPayload: Log
     dispatch(setUser(res.data));
     persistToken(res.access_token);
 
-    return res.access_token;
+    return res.data;
   }),
 );
 
@@ -45,8 +47,13 @@ export const doSetNewPassword = createAsyncThunk('auth/doSetNewPassword', async 
   setNewPassword(newPasswordData),
 );
 
-export const doLogout = createAsyncThunk('auth/doLogout', (payload, { dispatch }) => {
-  deleteToken();
-  deleteUser();
-  dispatch(setUser(null));
+export const doLogout = createAsyncThunk('auth/doLogout', async (payload, { dispatch }) => {
+  logout()
+    .then()
+    .catch((e) => notificationController.error({ message: e.message }))
+    .finally(() => {
+      deleteToken();
+      deleteUser();
+      dispatch(setUser(null));
+    });
 });
