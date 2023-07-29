@@ -2,7 +2,6 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { BaseButtonsForm } from '@app/components/common/forms/BaseButtonsForm/BaseButtonsForm';
 import { InputPassword } from '@app/components/common/inputs/InputPassword/InputPassword';
-import { passwordPattern } from '@app/constants/patterns';
 
 export const NewPasswordItem: React.FC = () => {
   const { t } = useTranslation();
@@ -18,7 +17,7 @@ export const NewPasswordItem: React.FC = () => {
           message: t('profile.nav.securitySettings.requiredPassword'),
         },
         {
-          pattern: passwordPattern,
+          min: 8,
           message: t('profile.nav.securitySettings.notValidPassword'),
         },
         ({ getFieldValue }) => ({

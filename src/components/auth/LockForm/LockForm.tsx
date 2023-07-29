@@ -42,8 +42,12 @@ export const LockForm: React.FC = () => {
     setLoading(true);
     dispatch(doLogin({ username, password }))
       .unwrap()
-      .then(() => {
+      .then((res) => {
+        const fullName = res?.full_name || '';
         navigate(-1);
+        notificationController.success({
+          message: `${t('auth.greeting')}, ${fullName}`,
+        });
       })
       .catch((e) => {
         notificationController.error({ message: e.message });

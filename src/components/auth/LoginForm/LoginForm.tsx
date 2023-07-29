@@ -24,7 +24,13 @@ export const LoginForm: React.FC = () => {
     setLoading(true);
     dispatch(doLogin(values))
       .unwrap()
-      .then(() => navigate('/'))
+      .then((res) => {
+        const fullName = res?.full_name || '';
+        navigate('/');
+        notificationController.success({
+          message: `${t('auth.greeting')}, ${fullName}`,
+        });
+      })
       .catch((err) => notificationController.error({ message: err.message }))
       .finally(() => setLoading(false));
   };
