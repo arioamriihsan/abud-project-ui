@@ -94,7 +94,7 @@ export const getMarkAreaData = (data: string[] | number[]): MarkArea[][] =>
     },
   ]);
 
-export const capitalize = (word: string): string => `${word[0].toUpperCase()}${word.slice(1)}`;
+export const capitalize = (word: string): string => `${(word[0] || '').toUpperCase()}${word.slice(1)}`;
 
 export const hexToRGB = (hex: string): string => {
   const r = parseInt(hex.slice(1, 3), 16),

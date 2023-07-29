@@ -63,7 +63,7 @@ const initialPersonalInfoValues: PersonalInfoFormValues = {
 };
 
 export const PersonalInfo: React.FC = () => {
-  const user = useAppSelector((state) => state.user.user);
+  const user = useAppSelector((state) => state.user.profile);
 
   const [isFieldsChanged, setFieldsChanged] = useState(false);
   const [isLoading, setLoading] = useState(false);

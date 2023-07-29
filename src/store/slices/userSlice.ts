@@ -1,13 +1,13 @@
 import { createAction, createSlice, PrepareAction } from '@reduxjs/toolkit';
-import { UserModel } from '@app/domain/UserModel';
 import { persistUser, readUser } from '@app/services/localStorage.service';
+import { UserModel } from '@app/domain/UserModel';
 
 export interface UserState {
-  user: UserModel | null;
+  profile: UserModel | null;
 }
 
 const initialState: UserState = {
-  user: readUser(),
+  profile: readUser(),
 };
 
 export const setUser = createAction<PrepareAction<UserModel>>('user/setUser', (userData) => {
@@ -17,12 +17,12 @@ export const setUser = createAction<PrepareAction<UserModel>>('user/setUser', (u
 });
 
 export const userSlice = createSlice({
-  name: 'user',
+  name: 'profile',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(setUser, (state, action) => {
-      state.user = action.payload;
+      state.profile = action.payload;
     });
   },
 });

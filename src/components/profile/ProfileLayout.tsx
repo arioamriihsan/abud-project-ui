@@ -14,7 +14,7 @@ import { useResponsive } from '@app/hooks/useResponsive';
 import { useAppSelector } from '@app/hooks/reduxHooks';
 
 const ProfileLayout: React.FC = () => {
-  const user = useAppSelector((state) => state.user.user);
+  const user = useAppSelector((state) => state.user.profile);
 
   const { t } = useTranslation();
   const { isTablet: isTabletOrHigher, mobileOnly } = useResponsive();

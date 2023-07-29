@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
   ResetPasswordRequest,
   login,
@@ -10,24 +10,22 @@ import {
   SecurityCodePayload,
   NewPasswordData,
   setNewPassword,
+  logout,
 } from '@app/api/auth.api';
 import { setUser } from '@app/store/slices/userSlice';
-import { deleteToken, deleteUser, persistToken, readToken } from '@app/services/localStorage.service';
+import { deleteToken, deleteUser, persistToken } from '@app/services/localStorage.service';
+import { notificationController } from '@app/controllers/notificationController';
 
 export interface AuthSlice {
   token: string | null;
 }
-
-const initialState: AuthSlice = {
-  token: readToken(),
-};
 
 export const doLogin = createAsyncThunk('auth/doLogin', async (loginPayload: LoginRequest, { dispatch }) =>
   login(loginPayload).then((res) => {
     dispatch(setUser(res.data));
     persistToken(res.access_token);
 
-    return res.access_token;
+    return res.data;
   }),
 );
 
@@ -49,24 +47,13 @@ export const doSetNewPassword = createAsyncThunk('auth/doSetNewPassword', async 
   setNewPassword(newPasswordData),
 );
 
-export const doLogout = createAsyncThunk('auth/doLogout', (payload, { dispatch }) => {
-  deleteToken();
-  deleteUser();
-  dispatch(setUser(null));
-});
-
-const authSlice = createSlice({
-  name: 'auth',
-  initialState,
-  reducers: {},
-  extraReducers: (builder) => {
-    builder.addCase(doLogin.fulfilled, (state, action) => {
-      state.token = action.payload;
+export const doLogout = createAsyncThunk('auth/doLogout', async (payload, { dispatch }) => {
+  logout()
+    .then()
+    .catch((e) => notificationController.error({ message: e.message }))
+    .finally(() => {
+      deleteToken();
+      deleteUser();
+      dispatch(setUser(null));
     });
-    builder.addCase(doLogout.fulfilled, (state) => {
-      state.token = '';
-    });
-  },
 });
-
-export default authSlice.reducer;

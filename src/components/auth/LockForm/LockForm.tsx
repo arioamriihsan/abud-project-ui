@@ -24,7 +24,7 @@ export const LockForm: React.FC = () => {
   const [isLoading, setLoading] = useState(false);
   const [dateState, setDateState] = useState(new Date());
 
-  const user = useAppSelector((state) => state.user.user);
+  const user = useAppSelector((state) => state.user.profile);
   const fullName = user?.full_name ?? '';
   const username = user?.username ?? '';
   const userBackgroundColor = user?.background_color ?? '';
@@ -42,8 +42,12 @@ export const LockForm: React.FC = () => {
     setLoading(true);
     dispatch(doLogin({ username, password }))
       .unwrap()
-      .then(() => {
+      .then((res) => {
+        const fullName = res?.full_name || '';
         navigate(-1);
+        notificationController.success({
+          message: `${t('auth.greeting')}, ${fullName}`,
+        });
       })
       .catch((e) => {
         notificationController.error({ message: e.message });

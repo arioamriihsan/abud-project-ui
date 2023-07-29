@@ -19,7 +19,7 @@ export const TreatmentCard: React.FC = () => {
   const [isDateClicked, setDateClicked] = useState(false);
   const [calendar, setCalendar] = useState<CalendarEvent[]>([]);
 
-  const user = useAppSelector((state) => state.user.user);
+  const user = useAppSelector((state) => state.user.profile);
 
   useEffect(() => {
     user && getUserCalendar(user?.id).then((res) => setCalendar(res));

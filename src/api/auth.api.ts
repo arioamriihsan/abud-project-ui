@@ -1,4 +1,4 @@
-import { httpApi } from '@app/api/http.api';
+import { httpApi, httpPublic } from '@app/api/http.api';
 import { UserModel } from '@app/domain/UserModel';
 
 export interface AuthData {
@@ -36,8 +36,16 @@ export interface LoginResponse {
   error: boolean;
 }
 
+interface LogoutResponse {
+  message: string;
+  error: boolean;
+}
+
 export const login = async (loginPayload: LoginRequest): Promise<LoginResponse> =>
   httpApi.post<LoginResponse>('auth/login', { ...loginPayload }).then(({ data }) => data);
+
+export const logout = async (): Promise<LogoutResponse> =>
+  httpPublic.delete<LogoutResponse>('auth/logout').then(({ data }) => data);
 
 export const signUp = (signUpData: SignUpRequest): Promise<undefined> =>
   httpApi.post<undefined>('signUp', { ...signUpData }).then(({ data }) => data);
