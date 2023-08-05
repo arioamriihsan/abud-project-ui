@@ -3,20 +3,28 @@ import reportWebVitals from './reportWebVitals';
 import './i18n';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import 'config/config';
-import { Provider } from 'react-redux';
+import { QueryClientProvider } from 'react-query';
+import { Provider as ReduxProvider } from 'react-redux';
 import { store } from '@app/store/store';
 import ReactDOM from 'react-dom';
 import React from 'react';
+import queryClient from './core/queryClient';
+import combineProviders from './context/combineProviders';
 
 interface EventTarget {
   state?: 'activated';
 }
 
+const Providers = combineProviders([
+  [QueryClientProvider, { client: queryClient }],
+  [ReduxProvider, { store }],
+]);
+
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
+    <Providers>
       <App />
-    </Provider>
+    </Providers>
   </React.StrictMode>,
   document.getElementById('root'),
 );
