@@ -1,38 +1,42 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { usePostLogin } from '../../hooks/authHooks';
 import { BaseForm } from '@app/components/common/forms/BaseForm/BaseForm';
-import { useAppDispatch } from '@app/hooks/reduxHooks';
-import { doLogin } from '@app/store/slices/authSlice';
 import { notificationController } from '@app/controllers/notificationController';
+import { getProfile } from '@app/api/profile.api';
+import { LoginRequest } from '@app/api/auth.api';
+import { persistUser } from '@app/services/localStorage.service';
 import * as S from './LoginForm.styles';
 import * as Auth from '@app/components/layouts/AuthLayout/AuthLayout.styles';
 
-interface LoginFormData {
-  username: string;
-  password: string;
-}
-
 export const LoginForm: React.FC = () => {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
   const { t } = useTranslation();
 
-  const [isLoading, setLoading] = useState<boolean>(false);
+  const { mutateAsync: login, isLoading: loginLoading } = usePostLogin();
 
-  const handleSubmit = (values: LoginFormData) => {
-    setLoading(true);
-    dispatch(doLogin(values))
-      .unwrap()
-      .then((res) => {
-        const fullName = res?.full_name || '';
-        navigate('/');
-        notificationController.success({
-          message: `${t('auth.greeting')}, ${fullName}`,
-        });
-      })
-      .catch((err) => notificationController.error({ message: err.message }))
-      .finally(() => setLoading(false));
+  const handleSubmit = async (form: LoginRequest) => {
+    const { username, password } = form;
+    if (!username || !password) return;
+
+    try {
+      await login({ username, password });
+      const profileResp = await getProfile();
+
+      const profileData = profileResp?.data?.data;
+      const fullName = profileData?.full_name || '';
+
+      persistUser(profileData);
+
+      navigate('/');
+
+      notificationController.success({
+        message: `${t('auth.greeting')}, ${fullName}`,
+      });
+    } catch (err: any) {
+      notificationController.error({ message: err.message });
+    }
   };
 
   return (
@@ -58,7 +62,7 @@ export const LoginForm: React.FC = () => {
           <Auth.FormInputPassword placeholder={t('common.password')} />
         </Auth.FormItem>
         <BaseForm.Item noStyle>
-          <Auth.SubmitButton type="primary" htmlType="submit" loading={isLoading}>
+          <Auth.SubmitButton type="primary" htmlType="submit" loading={loginLoading}>
             {t('common.login')}
           </Auth.SubmitButton>
         </BaseForm.Item>

@@ -1,15 +1,16 @@
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import './i18n';
-import * as serviceWorkerRegistration from './serviceWorkerRegistration';
-import 'config/config';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { QueryClientProvider } from 'react-query';
 import { Provider as ReduxProvider } from 'react-redux';
 import { store } from '@app/store/store';
-import ReactDOM from 'react-dom';
-import React from 'react';
 import queryClient from './core/queryClient';
-import combineProviders from './context/combineProviders';
+import reportWebVitals from './reportWebVitals';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+import combineProviders from './utils/combineProviders';
+import App from './App';
+
+import './i18n';
+import 'config/config';
 
 interface EventTarget {
   state?: 'activated';

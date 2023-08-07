@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useResponsive } from '@app/hooks/useResponsive';
+import { usePostLogin } from '@app/features/auth/hooks/authHooks';
+import { Dates } from '@app/constants/Dates';
+import { getInitials } from '@app/utils/utils';
 import { BaseForm } from '@app/components/common/forms/BaseForm/BaseForm';
 import { notificationController } from '@app/controllers/notificationController';
-import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
-import { useResponsive } from '@app/hooks/useResponsive';
-import { Dates } from '@app/constants/Dates';
-import { doLogin } from '@app/store/slices/authSlice';
-import { getInitials } from '@app/utils/utils';
 import * as Auth from '@app/components/layouts/AuthLayout/AuthLayout.styles';
 import * as S from './LockForm.styles';
+import { readUser } from '@app/services/localStorage.service';
 
 interface LockFormData {
   password: string;
@@ -19,15 +19,15 @@ export const LockForm: React.FC = () => {
   const navigate = useNavigate();
   const { mobileOnly } = useResponsive();
   const { t } = useTranslation();
-  const dispatch = useAppDispatch();
 
-  const [isLoading, setLoading] = useState(false);
+  const { mutateAsync: login, isLoading: loginLoading } = usePostLogin();
+
   const [dateState, setDateState] = useState(new Date());
 
-  const user = useAppSelector((state) => state.user.profile);
-  const fullName = user?.full_name ?? '';
-  const username = user?.username ?? '';
-  const userBackgroundColor = user?.background_color ?? '';
+  const user = readUser();
+  const fullName = user?.full_name || '';
+  const username = user?.username || '';
+  const userBackgroundColor = user?.background_color || '';
 
   const currentDateInUTC = dateState.toUTCString();
   const currentTime = Dates.format(currentDateInUTC, 'h:mm A');
@@ -38,21 +38,19 @@ export const LockForm: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const handleSubmit = ({ password }: LockFormData) => {
-    setLoading(true);
-    dispatch(doLogin({ username, password }))
-      .unwrap()
-      .then((res) => {
-        const fullName = res?.full_name || '';
-        navigate(-1);
-        notificationController.success({
-          message: `${t('auth.greeting')}, ${fullName}`,
-        });
-      })
-      .catch((e) => {
-        notificationController.error({ message: e.message });
-        setLoading(false);
+  const handleSubmit = async ({ password }: LockFormData) => {
+    if (!password || !username) return;
+
+    try {
+      await login({ username, password });
+
+      navigate(-1);
+      notificationController.success({
+        message: `${t('auth.greeting')}, ${fullName}`,
       });
+    } catch (err: any) {
+      notificationController.error({ message: err.message });
+    }
   };
 
   return (
@@ -84,7 +82,7 @@ export const LockForm: React.FC = () => {
           <Auth.FormInputPassword placeholder={t('common.password')} />
         </S.FormItem>
         <BaseForm.Item noStyle>
-          <Auth.SubmitButton type="primary" htmlType="submit" loading={isLoading}>
+          <Auth.SubmitButton type="primary" htmlType="submit" loading={loginLoading}>
             {t('common.login')}
           </Auth.SubmitButton>
         </BaseForm.Item>

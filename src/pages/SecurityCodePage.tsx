@@ -1,7 +1,7 @@
 import React from 'react';
-import { SecurityCodeForm } from '@app/components/auth/SecurityCodeForm/SecurityCodeForm';
 import { useTranslation } from 'react-i18next';
 import { PageTitle } from '@app/components/common/PageTitle/PageTitle';
+import { SecurityCodeForm } from '@app/features/auth/components/SecurityCodeForm/SecurityCodeForm';
 
 const SecurityCodePage: React.FC = () => {
   const { t } = useTranslation();

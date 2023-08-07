@@ -3,12 +3,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 // no lazy loading for auth pages to avoid flickering
 const AuthLayout = React.lazy(() => import('@app/components/layouts/AuthLayout/AuthLayout'));
-import LoginPage from '@app/pages/LoginPage';
+import LoginPage from '@app/features/auth/pages/LoginPage';
+import LockPage from '@app/features/auth/pages/LockPage';
 import SignUpPage from '@app/pages/SignUpPage';
 import ForgotPasswordPage from '@app/pages/ForgotPasswordPage';
 import SecurityCodePage from '@app/pages/SecurityCodePage';
 import NewPasswordPage from '@app/pages/NewPasswordPage';
-import LockPage from '@app/pages/LockPage';
 
 import MainLayout from '@app/components/layouts/main/MainLayout/MainLayout';
 import ProfileLayout from '@app/components/profile/ProfileLayout';
