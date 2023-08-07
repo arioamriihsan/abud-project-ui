@@ -11,11 +11,10 @@ import { ProfileInfo } from '@app/components/profile/profileCard/ProfileInfo/Pro
 import { PageTitle } from '@app/components/common/PageTitle/PageTitle';
 import { ProfileNav } from '@app/components/profile/profileCard/ProfileNav/ProfileNav';
 import { useResponsive } from '@app/hooks/useResponsive';
-import { useAppSelector } from '@app/hooks/reduxHooks';
+import { readUser } from '@app/services/localStorage.service';
 
 const ProfileLayout: React.FC = () => {
-  const user = useAppSelector((state) => state.user.profile);
-
+  const profile = readUser();
   const { t } = useTranslation();
   const { isTablet: isTabletOrHigher, mobileOnly } = useResponsive();
   const location = useLocation();
@@ -45,7 +44,7 @@ const ProfileLayout: React.FC = () => {
             <ProfileCard>
               <Row gutter={[30, 30]}>
                 <Col xs={24} md={12} xl={24}>
-                  <ProfileInfo profileData={user} />
+                  <ProfileInfo profileData={profile} />
                 </Col>
 
                 <Col xs={24} md={12} xl={24}>

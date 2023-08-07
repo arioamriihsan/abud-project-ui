@@ -1,5 +1,4 @@
 import { httpApi, httpPublic } from '@app/api/http.api';
-import { UserModel } from '@app/domain/UserModel';
 
 export interface AuthData {
   username: string;
@@ -31,7 +30,6 @@ export interface LoginRequest {
 }
 
 export interface LoginResponse {
-  data: UserModel;
   access_token: string;
   error: boolean;
 }
@@ -40,6 +38,11 @@ interface LogoutResponse {
   message: string;
   error: boolean;
 }
+
+const endpoints = {
+  login: '/auth/login',
+  logout: '/auth/logout',
+};
 
 export const login = async (loginPayload: LoginRequest): Promise<LoginResponse> =>
   httpApi.post<LoginResponse>('auth/login', { ...loginPayload }).then(({ data }) => data);
@@ -58,3 +61,11 @@ export const verifySecurityCode = (securityCodePayload: SecurityCodePayload): Pr
 
 export const setNewPassword = (newPasswordData: NewPasswordData): Promise<undefined> =>
   httpApi.post<undefined>('setNewPassword', { ...newPasswordData }).then(({ data }) => data);
+
+export const postLogin = (payload: LoginRequest) => {
+  const { username, password } = payload;
+  return httpApi.post<LoginResponse>(endpoints.login, {
+    username,
+    password,
+  });
+};
