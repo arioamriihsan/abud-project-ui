@@ -1,16 +1,37 @@
-import React, { useEffect } from 'react';
-import { useAppDispatch } from '@app/hooks/reduxHooks';
-import { Navigate } from 'react-router-dom';
-import { doLogout } from '@app/store/slices/authSlice';
+import React, { useEffect, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuthContext } from '@app/features/auth/hooks/useAuthContext';
+import { usePostLogout } from '@app/features/auth/hooks/authHooks';
+import { deleteToken, deleteUser, readUser } from '@app/services/localStorage.service';
+import { notificationController } from '@app/controllers/notificationController';
 
 const Logout: React.FC = () => {
-  const dispatch = useAppDispatch();
+  const profile = readUser();
+  const username = profile?.username || '';
+
+  const navigate = useNavigate();
+  const { setIsLogin } = useAuthContext();
+  const { mutateAsync: logout } = usePostLogout();
+
+  const doLogout = useCallback(async () => {
+    if (!username) return;
+
+    logout({ username })
+      .then()
+      .catch((err) => notificationController.error({ message: err.message }))
+      .finally(() => {
+        deleteToken();
+        deleteUser();
+        setIsLogin(false);
+        navigate('/auth/login');
+      });
+  }, [logout, setIsLogin, navigate, username]);
 
   useEffect(() => {
-    dispatch(doLogout());
-  }, [dispatch]);
+    doLogout();
+  }, [doLogout]);
 
-  return <Navigate to="/auth/login" replace />;
+  return null;
 };
 
 export default Logout;

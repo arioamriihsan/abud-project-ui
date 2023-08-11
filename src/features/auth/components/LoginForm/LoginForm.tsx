@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { usePostLogin } from '../../hooks/authHooks';
+import { useAuthContext } from '../../hooks/useAuthContext';
 import { BaseForm } from '@app/components/common/forms/BaseForm/BaseForm';
 import { notificationController } from '@app/controllers/notificationController';
 import { getProfile } from '@app/api/profile.api';
@@ -13,7 +14,7 @@ import * as Auth from '@app/components/layouts/AuthLayout/AuthLayout.styles';
 export const LoginForm: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
-
+  const { setIsLogin } = useAuthContext();
   const { mutateAsync: login, isLoading: loginLoading } = usePostLogin();
 
   const handleSubmit = async (form: LoginRequest) => {
@@ -27,6 +28,7 @@ export const LoginForm: React.FC = () => {
       const profileData = profileResp?.data?.data;
       const fullName = profileData?.full_name || '';
 
+      setIsLogin(true);
       persistUser(profileData);
 
       navigate('/');

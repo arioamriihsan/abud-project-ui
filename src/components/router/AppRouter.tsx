@@ -11,7 +11,7 @@ import SecurityCodePage from '@app/pages/SecurityCodePage';
 import NewPasswordPage from '@app/pages/NewPasswordPage';
 
 import MainLayout from '@app/components/layouts/main/MainLayout/MainLayout';
-import ProfileLayout from '@app/components/profile/ProfileLayout';
+import ProfilePage from '@app/features/profile/pages/ProfilePage';
 import RequireAuth from '@app/components/router/RequireAuth';
 import { withLoading } from '@app/hocs/withLoading.hoc';
 import NftDashboardPage from '@app/pages/DashboardPages/NftDashboardPage';
@@ -150,7 +150,7 @@ export const AppRouter: React.FC = () => {
           </Route>
           <Route path="server-error" element={<ServerError />} />
           <Route path="404" element={<Error404 />} />
-          <Route path="profile" element={<ProfileLayout />}>
+          <Route path="profile" element={<ProfilePage />}>
             <Route path="personal-info" element={<PersonalInfo />} />
             <Route path="security-settings" element={<SecuritySettings />} />
             <Route path="notifications" element={<Notifications />} />

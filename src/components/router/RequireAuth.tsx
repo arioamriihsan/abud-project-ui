@@ -1,15 +1,12 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { WithChildrenProps } from '@app/types/generalTypes';
-import { readToken, readUser } from '@app/services/localStorage.service';
+import { useAuthContext } from '@app/features/auth/hooks/useAuthContext';
 
 const RequireAuth: React.FC<WithChildrenProps> = ({ children }) => {
-  const token = readToken();
-  const user = readUser();
+  const { isLogin } = useAuthContext();
 
-  const loginSuccess = !!token && user;
-
-  return loginSuccess ? <>{children}</> : <Navigate to="/auth/login" replace />;
+  return isLogin ? <>{children}</> : <Navigate to="/auth/login" replace />;
 };
 
 export default RequireAuth;

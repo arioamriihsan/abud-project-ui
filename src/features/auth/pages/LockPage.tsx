@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useAuthContext } from '../hooks/useAuthContext';
 import { PageTitle } from '@app/components/common/PageTitle/PageTitle';
 import { Navigate } from 'react-router-dom';
 import { LockForm } from '../components/LockForm/LockForm';
-import { readToken } from '@app/services/localStorage.service';
 
 const LockPage: React.FC = () => {
-  const token = readToken();
   const [hasLogout, setHasLogout] = useState(false);
 
   const { t } = useTranslation();
+  const { isLogin } = useAuthContext();
 
   useEffect(() => {
-    if (!token) {
+    if (!isLogin) {
       return setHasLogout(true);
     }
     setHasLogout(false);
-  }, [token]);
+  }, [isLogin]);
 
   return !hasLogout ? (
     <>
