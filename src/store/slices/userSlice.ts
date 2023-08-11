@@ -1,9 +1,10 @@
 import { createAction, createSlice, PrepareAction } from '@reduxjs/toolkit';
 import { persistUser, readUser } from '@app/services/localStorage.service';
 import { UserModel } from '@app/domain/UserModel';
+import { Profile } from '@app/api/profile.api';
 
 export interface UserState {
-  profile: UserModel | null;
+  profile: Profile | null;
 }
 
 const initialState: UserState = {
@@ -20,11 +21,6 @@ export const userSlice = createSlice({
   name: 'profile',
   initialState,
   reducers: {},
-  extraReducers: (builder) => {
-    builder.addCase(setUser, (state, action) => {
-      state.profile = action.payload;
-    });
-  },
 });
 
 export default userSlice.reducer;
