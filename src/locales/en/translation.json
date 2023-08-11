@@ -21,6 +21,7 @@
   },
   "auth": {
     "greeting": "Welcome",
+    "loggingOut": "Logging Out ...",
     "minPassword": "Password must have contain at least 8 characters",
     "requiredUsername": "Username is required",
     "requiredPassword": "Password is required",
