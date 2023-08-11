@@ -1,6 +1,6 @@
 import { useMutation } from 'react-query';
 import { httpApi } from '@app/api/http.api';
-import { LoginRequest, postLogin, postLogout } from '@app/api/auth.api';
+import { LoginRequest, postLogin, postLogout, ChangePasswordRequest, changePassword } from '@app/api/auth.api';
 import { persistToken } from '@app/services/localStorage.service';
 
 export const usePostLogin = () => {
@@ -14,6 +14,10 @@ export const usePostLogin = () => {
       }
     },
   });
+};
+
+export const useChangePassword = () => {
+  return useMutation((param: ChangePasswordRequest) => changePassword(param));
 };
 
 export const usePostLogout = () => {

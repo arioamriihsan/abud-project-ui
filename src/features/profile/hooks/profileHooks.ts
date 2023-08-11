@@ -10,6 +10,7 @@ export const useGetProfile = (enabled = false) => {
     },
     {
       enabled,
+      refetchOnMount: 'always',
     },
   );
 };

@@ -1,5 +1,5 @@
-import ProfileProvider from '@app/features/profile/context/ProfileProvider';
 import combineProviders from '@app/utils/combineProviders';
+import ProfileProvider from '@app/features/profile/context/ProfileProvider';
 
 const GlobalProviders = combineProviders([ProfileProvider]);
 
