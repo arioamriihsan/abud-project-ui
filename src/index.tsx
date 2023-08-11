@@ -6,6 +6,7 @@ import { store } from '@app/store/store';
 import queryClient from './core/queryClient';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+import AuthProvider from './features/auth/context/AuthProvider';
 import combineProviders from './utils/combineProviders';
 import App from './App';
 
@@ -19,6 +20,7 @@ interface EventTarget {
 const Providers = combineProviders([
   [QueryClientProvider, { client: queryClient }],
   [ReduxProvider, { store }],
+  AuthProvider,
 ]);
 
 ReactDOM.render(

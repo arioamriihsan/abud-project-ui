@@ -42,6 +42,7 @@ interface LogoutResponse {
 const endpoints = {
   login: '/auth/login',
   logout: '/auth/logout',
+  changePassword: '/change-password',
 };
 
 export const login = async (loginPayload: LoginRequest): Promise<LoginResponse> =>
@@ -68,4 +69,12 @@ export const postLogin = (payload: LoginRequest) => {
     username,
     password,
   });
+};
+
+export const postLogout = ({ username }: { username: string }) => {
+  return httpPublic.post<LogoutResponse>(endpoints.logout, { username });
+};
+
+export const changePassword = () => {
+  // return httpApi.post(endpoints.changePassword)
 };
