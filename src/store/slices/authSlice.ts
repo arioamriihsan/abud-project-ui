@@ -13,21 +13,12 @@ import {
   logout,
 } from '@app/api/auth.api';
 import { setUser } from '@app/store/slices/userSlice';
-import { deleteToken, deleteUser, persistToken } from '@app/services/localStorage.service';
+import { deleteToken, deleteUser } from '@app/services/localStorage.service';
 import { notificationController } from '@app/controllers/notificationController';
 
 export interface AuthSlice {
   token: string | null;
 }
-
-export const doLogin = createAsyncThunk('auth/doLogin', async (loginPayload: LoginRequest, { dispatch }) =>
-  login(loginPayload).then((res) => {
-    dispatch(setUser(res.data));
-    persistToken(res.access_token);
-
-    return res.data;
-  }),
-);
 
 export const doSignUp = createAsyncThunk('auth/doSignUp', async (signUpPayload: SignUpRequest) =>
   signUp(signUpPayload),
