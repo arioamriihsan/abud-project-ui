@@ -40,7 +40,7 @@ export const DesktopHeader: React.FC<DesktopHeaderProps> = ({ isTwoColumnsLayout
       {leftSide}
 
       <S.ProfileColumn xl={8} xxl={7} $isTwoColumnsLayout={isTwoColumnsLayout}>
-        <Row align="middle" justify="center" gutter={[10, 10]}>
+        <S.ProfileRow>
           <Col>
             <Row gutter={[{ xxl: 10 }, { xxl: 10 }]}>
               <Col>
@@ -58,13 +58,13 @@ export const DesktopHeader: React.FC<DesktopHeaderProps> = ({ isTwoColumnsLayout
               <Col>
                 <SettingsDropdown />
               </Col>
+
+              <Col>
+                <ProfileDropdown />
+              </Col>
             </Row>
           </Col>
-
-          <Col>
-            <ProfileDropdown />
-          </Col>
-        </Row>
+        </S.ProfileRow>
       </S.ProfileColumn>
     </Row>
   );
