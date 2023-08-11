@@ -9,8 +9,8 @@ export interface Profile {
   phone: string | number;
   date_of_birth: string;
   background_color: string;
-  status: 0 | 1;
-  has_changed_password: 0 | 1;
+  status: number;
+  has_changed_password: number;
   role: number;
   last_updated: string;
 }

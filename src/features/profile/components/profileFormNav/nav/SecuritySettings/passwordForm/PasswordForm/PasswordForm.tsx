@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Col, Row } from 'antd';
+import { useChangePassword } from '@app/features/auth/hooks/authHooks';
+import { useAuthContext } from '@app/features/auth/hooks/useAuthContext';
+import { useGetProfile } from '@app/features/profile/hooks/profileHooks';
 import { BaseButtonsForm } from '@app/components/common/forms/BaseButtonsForm/BaseButtonsForm';
 import { ConfirmItemPassword } from '@app/features/profile/components/profileFormNav/nav/SecuritySettings/passwordForm/ConfirmPasswordItem/ConfirmPasswordItem';
 import { CurrentPasswordItem } from '@app/features/profile/components/profileFormNav/nav/SecuritySettings/passwordForm/CurrentPasswordItem/CurrentPasswordItem';
@@ -8,19 +11,32 @@ import { NewPasswordItem } from '@app/features/profile/components/profileFormNav
 import { notificationController } from '@app/controllers/notificationController';
 import * as S from './PasswordForm.styles';
 
+interface FormPassword {
+  password: string;
+  newPassword: string;
+  confirmPassword: string;
+}
+
 export const PasswordForm: React.FC = () => {
   const [isFieldsChanged, setFieldsChanged] = useState(false);
-  const [isLoading, setLoading] = useState(false);
   const { t } = useTranslation();
 
-  const onFinish = (values: []) => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
+  const { isLogin } = useAuthContext();
+  const { data: profileData } = useGetProfile(isLogin);
+  const username = profileData?.data?.username ?? '';
+
+  const { mutateAsync: changePassword, isLoading: changePasswordLoading } = useChangePassword();
+
+  const onFinish = async (values: FormPassword) => {
+    setFieldsChanged(true);
+
+    try {
+      const resp = await changePassword({ ...values, username });
+      notificationController.success({ message: resp?.data?.message });
       setFieldsChanged(false);
-      notificationController.success({ message: t('common.success') });
-      console.log(values);
-    }, 1000);
+    } catch (err: any) {
+      notificationController.error({ message: err.message });
+    }
   };
 
   return (
@@ -30,7 +46,7 @@ export const PasswordForm: React.FC = () => {
       isFieldsChanged={isFieldsChanged}
       onFieldsChange={() => setFieldsChanged(true)}
       footer={
-        <S.Btn loading={isLoading} type="primary" htmlType="submit">
+        <S.Btn loading={changePasswordLoading} type="primary" htmlType="submit">
           {t('common.confirm')}
         </S.Btn>
       }

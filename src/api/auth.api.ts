@@ -24,25 +24,10 @@ export interface NewPasswordData {
   newPassword: string;
 }
 
-export interface LoginRequest {
-  username: string;
-  password: string;
-}
-
-export interface LoginResponse {
-  access_token: string;
-  error: boolean;
-}
-
-interface LogoutResponse {
-  message: string;
-  error: boolean;
-}
-
 const endpoints = {
   login: '/auth/login',
   logout: '/auth/logout',
-  changePassword: '/change-password',
+  changePassword: '/auth/change-password',
 };
 
 export const login = async (loginPayload: LoginRequest): Promise<LoginResponse> =>
@@ -63,6 +48,17 @@ export const verifySecurityCode = (securityCodePayload: SecurityCodePayload): Pr
 export const setNewPassword = (newPasswordData: NewPasswordData): Promise<undefined> =>
   httpApi.post<undefined>('setNewPassword', { ...newPasswordData }).then(({ data }) => data);
 
+// ===================== LOGIN START HERE =====================
+export interface LoginRequest {
+  username: string;
+  password: string;
+}
+
+export interface LoginResponse {
+  access_token: string;
+  error: boolean;
+}
+
 export const postLogin = (payload: LoginRequest) => {
   const { username, password } = payload;
   return httpApi.post<LoginResponse>(endpoints.login, {
@@ -70,11 +66,39 @@ export const postLogin = (payload: LoginRequest) => {
     password,
   });
 };
+// ===================== LOGIN END HERE =====================
+
+// ===================== CHANGE PASSWORD START HERE =====================
+export interface ChangePasswordRequest {
+  username: string;
+  password: string;
+  confirmPassword: string;
+  newPassword: string;
+}
+
+interface ChangePasswordResponse {
+  message: string;
+  error: boolean;
+}
+
+export const changePassword = (payload: ChangePasswordRequest) => {
+  const { username, password, newPassword, confirmPassword } = payload;
+  return httpApi.post<ChangePasswordResponse>(endpoints.changePassword, {
+    username,
+    current_pass: password,
+    new_pass: newPassword,
+    conf_pass: confirmPassword,
+  });
+};
+// ===================== CHANGE PASSWORD END HERE =====================
+
+// ===================== LOGOUT START HERE =====================
+interface LogoutResponse {
+  message: string;
+  error: boolean;
+}
 
 export const postLogout = ({ username }: { username: string }) => {
   return httpPublic.post<LogoutResponse>(endpoints.logout, { username });
 };
-
-export const changePassword = () => {
-  // return httpApi.post(endpoints.changePassword)
-};
+// ===================== LOGOUT END HERE =====================
