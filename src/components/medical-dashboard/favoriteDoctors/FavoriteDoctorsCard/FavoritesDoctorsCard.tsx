@@ -4,9 +4,8 @@ import { DashboardCard } from '@app/components/medical-dashboard/DashboardCard/D
 import { Carousel } from '@app/components/common/Carousel/Carousel';
 import { DoctorCard } from '../DoctorCard/DoctorCard';
 import { Dates } from '@app/constants/Dates';
-import { CalendarEvent, getUserCalendar } from '@app/api/calendar.api';
+import { CalendarEvent } from '@app/api/calendar.api';
 import { Doctor, getDoctorsData } from '@app/api/doctors.api';
-import { useAppSelector } from '@app/hooks/reduxHooks';
 import * as S from './FavoritesDoctorsCard.styles';
 import { BREAKPOINTS } from '@app/styles/themes/constants';
 
@@ -26,17 +25,11 @@ export const FavoritesDoctorsCard: React.FC = () => {
   const [doctors, setDoctors] = useState<Doctor[]>([]);
   const [calendar, setCalendar] = useState<CalendarEvent[]>([]);
 
-  const user = useAppSelector((state) => state.user.user);
-
   const today = Dates.getToday();
 
   useEffect(() => {
     getDoctorsData().then((res) => setDoctors(res));
   }, []);
-
-  useEffect(() => {
-    user && getUserCalendar(user.id).then((res) => setCalendar(res));
-  }, [user]);
 
   const pastEvents = useMemo(
     () => calendar.filter((event) => Dates.getDate(event.date).isBefore(today)),

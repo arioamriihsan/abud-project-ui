@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Col, Row } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { NFTCard } from '@app/components/nft-dashboard/common/NFTCard/NFTCard';
 import { useAppSelector } from '@app/hooks/reduxHooks';
 import { formatNumberWithCommas, getCurrencyPrice } from '@app/utils/utils';
-import { getBalance } from '@app/api/earnings.api';
 import * as S from './Balance.styles';
 
 export const Balance: React.FC = () => {
@@ -14,12 +13,7 @@ export const Balance: React.FC = () => {
     btc_balance: 0,
   });
 
-  const userId = useAppSelector((state) => state.user.user?.id);
   const { theme } = useAppSelector((state) => state.theme);
-
-  useEffect(() => {
-    userId && getBalance(userId).then((res) => setBalance(res));
-  }, [userId]);
 
   const { t } = useTranslation();
 
