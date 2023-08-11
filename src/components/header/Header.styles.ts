@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Col, Collapse, Menu } from 'antd';
+import { Row, Col, Collapse, Menu } from 'antd';
 import { BurgerIcon } from '@app/components/common/Burger/BurgerIcon';
 import { GitHubButton } from '@app/components/header/components/GithubButton/GitHubButton';
 import { BORDER_RADIUS, LAYOUT, media } from '@app/styles/themes/constants';
@@ -87,6 +87,10 @@ export const ProfileColumn = styled(Col)<ProfileColumn>`
         padding: ${LAYOUT.desktop.paddingVertical} ${LAYOUT.desktop.paddingHorizontal};
       `}
   }
+`;
+
+export const ProfileRow = styled(Row)`
+  width: max-content;
 `;
 
 export const GHButton = styled(GitHubButton)`
