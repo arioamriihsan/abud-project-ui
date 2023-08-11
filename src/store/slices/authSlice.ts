@@ -1,8 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
   ResetPasswordRequest,
-  login,
-  LoginRequest,
   signUp,
   SignUpRequest,
   resetPassword,

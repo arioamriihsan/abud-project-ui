@@ -9,8 +9,6 @@ import { NicknameItem } from '@app/features/profile/components/profileFormNav/na
 import { SexItem } from '@app/features/profile/components/profileFormNav/nav/PersonalInfo/SexItem/SexItem';
 import { BirthdayItem } from '@app/features/profile/components/profileFormNav/nav/PersonalInfo/BirthdayItem/BirthdayItem';
 import { LanguageItem } from '@app/features/profile/components/profileFormNav/nav/PersonalInfo/LanguageItem/LanguageItem';
-import { PhoneItem } from '@app/features/profile/components/profileFormNav/nav/PersonalInfo/PhoneItem/PhoneItem';
-import { EmailItem } from '@app/features/profile/components/profileFormNav/nav/PersonalInfo/EmailItem/EmailItem';
 import { CountriesItem } from '@app/features/profile/components/profileFormNav/nav/PersonalInfo/CountriesItem/CountriesItem';
 import { CitiesItem } from '@app/features/profile/components/profileFormNav/nav/PersonalInfo/CitiesItem/CitiesItem';
 import { ZipcodeItem } from '@app/features/profile/components/profileFormNav/nav/PersonalInfo/ZipcodeItem/ZipcodeItem';
@@ -19,7 +17,6 @@ import { WebsiteItem } from '@app/features/profile/components/profileFormNav/nav
 import { SocialLinksItem } from '@app/features/profile/components/profileFormNav/nav/PersonalInfo/SocialLinksItem/SocialLinksItem';
 import { CreditCard } from '@app/features/profile/components/profileFormNav/nav/payments/paymentMethod/paymentForm/interfaces';
 import { useAppSelector } from '@app/hooks/reduxHooks';
-import { Dates } from '@app/constants/Dates';
 import { notificationController } from '@app/controllers/notificationController';
 
 interface PersonalInfoFormValues {

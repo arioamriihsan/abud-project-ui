@@ -1,4 +1,5 @@
 import { httpApi, httpPublic } from '@app/api/http.api';
+import { AxiosResponse } from 'axios';
 
 export interface AuthData {
   username: string;
@@ -59,7 +60,7 @@ export interface LoginResponse {
   error: boolean;
 }
 
-export const postLogin = (payload: LoginRequest) => {
+export const postLogin = (payload: LoginRequest): Promise<AxiosResponse<LoginResponse>> => {
   const { username, password } = payload;
   return httpApi.post<LoginResponse>(endpoints.login, {
     username,
