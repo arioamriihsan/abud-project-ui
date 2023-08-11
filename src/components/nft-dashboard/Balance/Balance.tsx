@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Col, Row } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { NFTCard } from '@app/components/nft-dashboard/common/NFTCard/NFTCard';
@@ -7,12 +7,6 @@ import { formatNumberWithCommas, getCurrencyPrice } from '@app/utils/utils';
 import * as S from './Balance.styles';
 
 export const Balance: React.FC = () => {
-  const [balance, setBalance] = useState({
-    usd_balance: 0,
-    eth_balance: 0,
-    btc_balance: 0,
-  });
-
   const { theme } = useAppSelector((state) => state.theme);
 
   const { t } = useTranslation();
@@ -30,7 +24,7 @@ export const Balance: React.FC = () => {
               <Row gutter={[14, 14]}>
                 <Col span={24}>
                   <S.TitleBalanceText level={3}>
-                    {getCurrencyPrice(formatNumberWithCommas(balance.usd_balance), 'USD')}
+                    {getCurrencyPrice(formatNumberWithCommas(100), 'USD')}
                   </S.TitleBalanceText>
                 </Col>
 
@@ -38,13 +32,13 @@ export const Balance: React.FC = () => {
                   <Row gutter={[55, 10]} wrap={false}>
                     <Col>
                       <S.SubtitleBalanceText>
-                        {getCurrencyPrice(formatNumberWithCommas(balance.eth_balance), 'ETH')}
+                        {getCurrencyPrice(formatNumberWithCommas(200), 'ETH')}
                       </S.SubtitleBalanceText>
                     </Col>
 
                     <Col>
                       <S.SubtitleBalanceText>
-                        {getCurrencyPrice(formatNumberWithCommas(balance.btc_balance), 'BTC')}
+                        {getCurrencyPrice(formatNumberWithCommas(300), 'BTC')}
                       </S.SubtitleBalanceText>
                     </Col>
                   </Row>

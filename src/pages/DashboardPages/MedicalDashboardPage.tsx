@@ -8,7 +8,6 @@ import { ActivityCard } from '@app/components/medical-dashboard/activityCard/Act
 import { TreatmentCard } from '@app/components/medical-dashboard/treatmentCard/TreatmentCard';
 import { CovidCard } from '@app/components/medical-dashboard/covidCard/CovidCard';
 import { HealthCard } from '@app/components/medical-dashboard/HealthCard/HealthCard';
-import { FavoritesDoctorsCard } from '@app/components/medical-dashboard/favoriteDoctors/FavoriteDoctorsCard/FavoritesDoctorsCard';
 import { PatientResultsCard } from '@app/components/medical-dashboard/PatientResultsCard/PatientResultsCard';
 import { StatisticsCards } from '@app/components/medical-dashboard/statisticsCards/StatisticsCards';
 import { BloodScreeningCard } from '@app/components/medical-dashboard/bloodScreeningCard/BloodScreeningCard/BloodScreeningCard';
@@ -54,10 +53,6 @@ const MedicalDashboardPage: React.FC = () => {
 
           <Col id="health" xl={24} xxl={12}>
             <HealthCard />
-          </Col>
-
-          <Col id="favorite-doctors" xl={24}>
-            <FavoritesDoctorsCard />
           </Col>
 
           <Col id="news" span={24}>
@@ -111,10 +106,6 @@ const MedicalDashboardPage: React.FC = () => {
 
       <Col id="blood-screening" xs={24} md={12} order={(isTablet && 6) || 0}>
         <BloodScreeningCard />
-      </Col>
-
-      <Col id="favorite-doctors" xs={24} md={24} order={(isTablet && 13) || 0}>
-        <FavoritesDoctorsCard />
       </Col>
 
       <Col id="covid" xs={24} md={12} order={(isTablet && 12) || 0}>
