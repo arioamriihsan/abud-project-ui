@@ -9,6 +9,11 @@ export const ReferencesWrapper = styled.div`
   align-items: start;
   flex-wrap: nowrap;
   margin-top: 2rem;
+  color: var(--text-nft-light-color);
+
+  & strong {
+    color: var(--heading-color) !important;
+  }
 
   @media only screen and ${media.sm} {
     align-items: center;

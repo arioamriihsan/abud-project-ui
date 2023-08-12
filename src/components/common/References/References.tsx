@@ -11,7 +11,7 @@ export const References: React.FC = () => {
   return (
     <S.ReferencesWrapper>
       <S.Text>
-        Panel Admin Dashboard &copy; 2023. <b>Version: Beta</b>
+        Panel Admin Dashboard &copy; 2023. <strong>Version: Beta</strong>
       </S.Text>
       <S.Icons>
         <a href="https://github.com/altence/lightence-admin" target="_blank" rel="noreferrer">
