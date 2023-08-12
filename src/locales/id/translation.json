@@ -8,12 +8,14 @@
   },
   "common": {
     "confirm": "Konfirmasi",
+    "email": "Email",
     "error": "Terjadi Kesalahan",
     "firstName": "Nama Depan",
     "lastName": "Nama Akhir",
     "lock": "Kunci Akun",
     "login": "Masuk Akun",
     "password": "Kata Sandi",
+    "phone": "Nomor Telepon",
     "userName": "Nama Akun",
     "requiredField": "Field harus diisi!"
   },
