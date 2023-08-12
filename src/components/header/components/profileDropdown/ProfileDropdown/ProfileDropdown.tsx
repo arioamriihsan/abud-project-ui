@@ -20,7 +20,7 @@ export const ProfileDropdown: React.FC = () => {
     <Dropdown overlay={<ProfileOverlay />} trigger={['click']}>
       <S.ProfileDropdownHeader as={Row} gutter={[10, 10]} align="middle">
         <Col>
-          <S.ProfileAvatar backgroundColor={userBackgroundColor} alt={username} shape="circle" size={40}>
+          <S.ProfileAvatar backgroundcolor={userBackgroundColor} alt={username} shape="circle" size={40}>
             {getInitials(fullName)}
           </S.ProfileAvatar>
         </Col>

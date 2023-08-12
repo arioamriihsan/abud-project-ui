@@ -5,7 +5,7 @@ import { Avatar } from 'antd';
 import { HeaderActionWrapper } from '../../../Header.styles';
 
 interface AvatarProps {
-  backgroundColor: string;
+  backgroundcolor: string;
 }
 
 export const ProfileDropdownHeader = styled(HeaderActionWrapper)`
@@ -18,7 +18,7 @@ export const ProfileDropdownHeader = styled(HeaderActionWrapper)`
 `;
 
 export const ProfileAvatar = styled(Avatar)<AvatarProps>`
-  background-color: ${({ backgroundColor }) => backgroundColor};
+  background-color: ${({ backgroundcolor }) => backgroundcolor};
 `;
 
 export const DownArrow = styled(DownOutlined)`
