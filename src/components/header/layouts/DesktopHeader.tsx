@@ -36,7 +36,7 @@ export const DesktopHeader: React.FC<DesktopHeaderProps> = ({ isTwoColumnsLayout
   );
 
   return (
-    <Row justify="space-between" align="middle">
+    <Row justify="space-between" align="middle" wrap={false}>
       {leftSide}
 
       <S.ProfileColumn xl={8} xxl={7} $isTwoColumnsLayout={isTwoColumnsLayout}>
