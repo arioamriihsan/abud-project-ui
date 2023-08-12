@@ -11,14 +11,7 @@ export const References: React.FC = () => {
   return (
     <S.ReferencesWrapper>
       <S.Text>
-        Made by{' '}
-        <a href="https://altence.com" target="_blank" rel="noreferrer">
-          Altence{' '}
-        </a>
-        in 2022 &copy;. Based on{' '}
-        <a href="https://ant.design/" target="_blank" rel="noreferrer">
-          Ant-design.
-        </a>
+        Panel Admin Dashboard &copy; 2023. <b>Version: Beta</b>
       </S.Text>
       <S.Icons>
         <a href="https://github.com/altence/lightence-admin" target="_blank" rel="noreferrer">
