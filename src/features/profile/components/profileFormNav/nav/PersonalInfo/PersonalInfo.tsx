@@ -69,7 +69,7 @@ export const PersonalInfo: React.FC = () => {
     () =>
       user
         ? {
-            firstName: user.full_name,
+            // firstName: user.firstName,
             // lastName: user.lastName,
             // email: user.email.name,
             phone: user.phone,
