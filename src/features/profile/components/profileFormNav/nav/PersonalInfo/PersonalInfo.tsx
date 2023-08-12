@@ -14,10 +14,10 @@ import { AddressItem } from '@app/features/profile/components/profileFormNav/nav
 import { WebsiteItem } from '@app/features/profile/components/profileFormNav/nav/PersonalInfo/WebsiteItem/WebsiteItem';
 import { SocialLinksItem } from '@app/features/profile/components/profileFormNav/nav/PersonalInfo/SocialLinksItem/SocialLinksItem';
 import { CreditCard } from '@app/features/profile/components/profileFormNav/nav/payments/paymentMethod/paymentForm/interfaces';
-import { useAppSelector } from '@app/hooks/reduxHooks';
 import { notificationController } from '@app/controllers/notificationController';
 import { PhoneItem } from './PhoneItem/PhoneItem';
 import { EmailItem } from './EmailItem/EmailItem';
+import { readUser } from '@app/services/localStorage.service';
 
 interface PersonalInfoFormValues {
   birthday?: string;
@@ -60,7 +60,7 @@ const initialPersonalInfoValues: PersonalInfoFormValues = {
 };
 
 export const PersonalInfo: React.FC = () => {
-  const user = useAppSelector((state) => state.user.profile);
+  const user = readUser();
 
   const [isFieldsChanged, setFieldsChanged] = useState(false);
   const [isLoading, setLoading] = useState(false);
@@ -72,7 +72,7 @@ export const PersonalInfo: React.FC = () => {
             // firstName: user.firstName,
             // lastName: user.lastName,
             // email: user.email.name,
-            // phone: user.phone.number,
+            phone: user.phone,
             // nickname: user.userName,
             // sex: user.sex,
             // birthday: Dates.getDate(user.birthday),
@@ -151,7 +151,7 @@ export const PersonalInfo: React.FC = () => {
           </Col>
 
           <Col xs={24} md={12}>
-            <PhoneItem verified={true} />
+            <PhoneItem />
           </Col>
 
           <Col xs={24} md={12}>

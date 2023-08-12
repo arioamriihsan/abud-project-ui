@@ -10,14 +10,12 @@ interface PhoneItemsProps {
   verified?: boolean;
 }
 
-export const PhoneItem: React.FC<PhoneItemsProps> = ({ required, onClick, verified }) => {
+export const PhoneItem: React.FC<PhoneItemsProps> = ({ required }) => {
   const { t } = useTranslation();
 
   return (
     <BaseButtonsForm.Item
       name="phone"
-      $isSuccess={verified}
-      $successText={t('profile.nav.personalInfo.verified')}
       label={t('common.phone')}
       rules={[
         { required, message: t('common.requiredField') },
@@ -31,7 +29,7 @@ export const PhoneItem: React.FC<PhoneItemsProps> = ({ required, onClick, verifi
         }),
       ]}
     >
-      <S.PhoneNumberInput disabled={verified} className="ant-input" onClick={onClick} />
+      <S.PhoneNumberInput disabled className="ant-input" />
     </BaseButtonsForm.Item>
   );
 };
