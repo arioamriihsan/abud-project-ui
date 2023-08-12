@@ -5,10 +5,8 @@ import { BaseButtonsForm } from '@app/components/common/forms/BaseButtonsForm/Ba
 import { Card } from '@app/components/common/Card/Card';
 import { FirstNameItem } from '@app/features/profile/components/profileFormNav/nav/PersonalInfo/FirstNameItem/FirstNameItem';
 import { LastNameItem } from '@app/features/profile/components/profileFormNav/nav/PersonalInfo/LastNameItem/LastNameItem';
-import { NicknameItem } from '@app/features/profile/components/profileFormNav/nav/PersonalInfo/NicknameItem/NicknameItem';
 import { SexItem } from '@app/features/profile/components/profileFormNav/nav/PersonalInfo/SexItem/SexItem';
 import { BirthdayItem } from '@app/features/profile/components/profileFormNav/nav/PersonalInfo/BirthdayItem/BirthdayItem';
-import { LanguageItem } from '@app/features/profile/components/profileFormNav/nav/PersonalInfo/LanguageItem/LanguageItem';
 import { CountriesItem } from '@app/features/profile/components/profileFormNav/nav/PersonalInfo/CountriesItem/CountriesItem';
 import { CitiesItem } from '@app/features/profile/components/profileFormNav/nav/PersonalInfo/CitiesItem/CitiesItem';
 import { ZipcodeItem } from '@app/features/profile/components/profileFormNav/nav/PersonalInfo/ZipcodeItem/ZipcodeItem';
@@ -18,6 +16,8 @@ import { SocialLinksItem } from '@app/features/profile/components/profileFormNav
 import { CreditCard } from '@app/features/profile/components/profileFormNav/nav/payments/paymentMethod/paymentForm/interfaces';
 import { useAppSelector } from '@app/hooks/reduxHooks';
 import { notificationController } from '@app/controllers/notificationController';
+import { PhoneItem } from './PhoneItem/PhoneItem';
+import { EmailItem } from './EmailItem/EmailItem';
 
 interface PersonalInfoFormValues {
   birthday?: string;
@@ -137,19 +137,11 @@ export const PersonalInfo: React.FC = () => {
           </Col>
 
           <Col xs={24} md={12}>
-            <NicknameItem />
-          </Col>
-
-          <Col xs={24} md={12}>
             <SexItem />
           </Col>
 
           <Col xs={24} md={12}>
             <BirthdayItem />
-          </Col>
-
-          <Col xs={24} md={12}>
-            <LanguageItem />
           </Col>
 
           <Col span={24}>
@@ -158,13 +150,13 @@ export const PersonalInfo: React.FC = () => {
             </BaseButtonsForm.Item>
           </Col>
 
-          {/* <Col xs={24} md={12}>
-            <PhoneItem verified={user?.phone.verified} />
+          <Col xs={24} md={12}>
+            <PhoneItem verified={true} />
           </Col>
 
           <Col xs={24} md={12}>
-            <EmailItem verified={user?.email.verified} />
-          </Col> */}
+            <EmailItem verified={false} />
+          </Col>
 
           <Col span={24}>
             <BaseButtonsForm.Item>
