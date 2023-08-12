@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { Row, Col, Collapse, Menu } from 'antd';
 import { BurgerIcon } from '@app/components/common/Burger/BurgerIcon';
-import { GitHubButton } from '@app/components/header/components/GithubButton/GitHubButton';
+import { GuidenceButton } from '@app/components/header/components/GuidenceButton/GuidenceButton';
 import { BORDER_RADIUS, LAYOUT, media } from '@app/styles/themes/constants';
 
 export const DropdownMenu = styled(Menu)`
@@ -93,7 +93,7 @@ export const ProfileRow = styled(Row)`
   width: max-content;
 `;
 
-export const GHButton = styled(GitHubButton)`
+export const GHButton = styled(GuidenceButton)`
   display: none;
 
   @media only screen and ${media.lg} {

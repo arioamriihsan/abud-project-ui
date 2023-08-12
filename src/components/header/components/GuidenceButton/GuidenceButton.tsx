@@ -1,23 +1,26 @@
 import React from 'react';
 import { Button as BaseButton } from 'antd';
-import { GithubOutlined } from '@ant-design/icons';
+import { ReadOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { useAppSelector } from '@app/hooks/reduxHooks';
 import { BASE_COLORS } from '@app/styles/themes/constants';
 
-export const GitHubButton: React.FC = (props) => {
+export const GuidenceButton: React.FC = (props) => {
   const theme = useAppSelector((state) => state.theme.theme);
+
+  const { t } = useTranslation();
 
   return (
     <Button
       type="link"
-      href="https://github.com/altence/lightence-admin"
-      icon={<GithubIcon />}
+      href="https://docs.google.com/document/d/1agQcNQOJysPJH5VPEvWDNlBtYCPgLn4VN0LyR0OCK5Q/edit?usp=sharing"
+      icon={<GuidenceIcon />}
       target="_blank"
       $isDark={theme === 'dark'}
       {...props}
     >
-      GitHub
+      {t('header.guidence')}
     </Button>
   );
 };
@@ -39,7 +42,7 @@ const Button = styled(BaseButton)<{ $isDark: boolean }>`
   }
 `;
 
-const GithubIcon = styled(GithubOutlined)`
+const GuidenceIcon = styled(ReadOutlined)`
   font-size: 1.5rem;
   vertical-align: middle;
 `;
