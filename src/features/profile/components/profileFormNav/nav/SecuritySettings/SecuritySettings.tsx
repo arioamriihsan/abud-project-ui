@@ -5,8 +5,8 @@ import { PasswordForm } from './passwordForm/PasswordForm/PasswordForm';
 
 export const SecuritySettings: React.FC = () => (
   <Card>
-    <Row gutter={[30, 0]}>
-      <Col xs={20}>
+    <Row>
+      <Col xs={24}>
         <PasswordForm />
       </Col>
     </Row>
