@@ -7,9 +7,9 @@ import { Dates } from '@app/constants/Dates';
 import { getInitials } from '@app/utils/utils';
 import { BaseForm } from '@app/components/common/forms/BaseForm/BaseForm';
 import { notificationController } from '@app/controllers/notificationController';
+import { readUser } from '@app/services/localStorage.service';
 import * as Auth from '@app/components/layouts/AuthLayout/AuthLayout.styles';
 import * as S from './LockForm.styles';
-import { readUser } from '@app/services/localStorage.service';
 
 interface LockFormData {
   password: string;

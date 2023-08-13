@@ -5,8 +5,8 @@ import { H6 } from '@app/components/common/typography/H6/H6';
 import { ProfileOverlay } from '../ProfileOverlay/ProfileOverlay';
 import { useResponsive } from '@app/hooks/useResponsive';
 import { getInitials, shortenName } from '@app/utils/utils';
-import * as S from './ProfileDropdown.styles';
 import { readUser } from '@app/services/localStorage.service';
+import * as S from './ProfileDropdown.styles';
 
 export const ProfileDropdown: React.FC = () => {
   const profile = readUser();
