@@ -24,7 +24,7 @@ const Logout: React.FC = () => {
   const { setIsLogin } = useAuthContext();
   const { mutateAsync: logout } = usePostLogout();
 
-  const doLogout = useCallback(async () => {
+  const doLogout = useCallback(() => {
     if (!username) return;
 
     logout({ username })
