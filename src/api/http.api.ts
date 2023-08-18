@@ -1,10 +1,9 @@
 import axios from 'axios';
 import { AxiosError } from 'axios';
+import { queryClient } from 'core/queryClient';
 import { ApiError } from '@app/api/ApiError';
 import { readToken } from '@app/services/localStorage.service';
 import { checkTokenExpiration, doRefreshToken } from '@app/utils/refreshToken';
-import { store } from '../store/store';
-import { doLogout } from '@app/store/slices/authSlice';
 
 export const httpPublic = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
@@ -38,11 +37,10 @@ httpApi.interceptors.request.use(
 );
 
 httpApi.interceptors.response.use(undefined, (err: AxiosError) => {
-  const { dispatch } = store;
   const errStatus = err?.response?.status;
 
   if (!!errStatus && [401, 403].includes(errStatus)) {
-    dispatch(doLogout());
+    queryClient.setQueryData('Force Logout', true);
   }
   throw new ApiError<ApiErrorData>(err.response?.data.message || err.message, err.response?.data);
 });

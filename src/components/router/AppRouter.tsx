@@ -16,6 +16,7 @@ import RequireAuth from '@app/components/router/RequireAuth';
 import { withLoading } from '@app/hocs/withLoading.hoc';
 import NftDashboardPage from '@app/pages/DashboardPages/NftDashboardPage';
 import MedicalDashboardPage from '@app/pages/DashboardPages/MedicalDashboardPage';
+import AutoLogout from './AutoLogout';
 
 const NewsFeedPage = React.lazy(() => import('@app/pages/NewsFeedPage'));
 const KanbanPage = React.lazy(() => import('@app/pages/KanbanPage'));
@@ -59,7 +60,7 @@ const GoogleMaps = React.lazy(() => import('@app/pages/maps/GoogleMapsPage/Googl
 const LeafletMaps = React.lazy(() => import('@app/pages/maps/LeafletMapsPage/LeafletMapsPage'));
 const ReactSimpleMaps = React.lazy(() => import('@app/pages/maps/ReactSimpleMapsPage/ReactSimpleMapsPage'));
 const PigeonsMaps = React.lazy(() => import('@app/pages/maps/PigeonsMapsPage/PigeonsMapsPage'));
-const Logout = React.lazy(() => import('./Logout'));
+const Logout = React.lazy(() => import('@app/features/auth/pages/Logout'));
 
 export const NFT_DASHBOARD_PATH = '/';
 export const MEDICAL_DASHBOARD_PATH = '/medical-dashboard';
@@ -124,6 +125,7 @@ export const AppRouter: React.FC = () => {
   const protectedLayout = (
     <RequireAuth>
       <MainLayout />
+      <AutoLogout />
     </RequireAuth>
   );
 
@@ -150,7 +152,7 @@ export const AppRouter: React.FC = () => {
           </Route>
           <Route path="server-error" element={<ServerError />} />
           <Route path="404" element={<Error404 />} />
-          <Route path="profile" element={<ProfilePage />}>
+          <Route path="/profile" element={<ProfilePage />}>
             <Route path="personal-info" element={<PersonalInfo />} />
             <Route path="security-settings" element={<SecuritySettings />} />
             <Route path="notifications" element={<Notifications />} />

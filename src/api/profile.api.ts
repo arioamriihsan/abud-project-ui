@@ -6,7 +6,7 @@ export interface Profile {
   username: string;
   full_name: string;
   email: string;
-  phone: string | number;
+  phone: string;
   date_of_birth: string;
   background_color: string;
   status: number;

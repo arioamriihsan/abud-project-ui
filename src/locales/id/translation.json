@@ -4,7 +4,8 @@
     "loggingOut": "Keluar Akun ...",
     "minPassword": "Password harus mengandung minimal 8 karakter",
     "requiredUsername": "Nama Akun harus diisi",
-    "requiredPassword": "Kata Sandi harus diisi"
+    "requiredPassword": "Kata Sandi harus diisi",
+    "sessionExpired": "Sesi kamu telah berakhir. Silakan masuk akun kembali"
   },
   "common": {
     "confirm": "Konfirmasi",
