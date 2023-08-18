@@ -25,6 +25,7 @@
     "minPassword": "Password must have contain at least 8 characters",
     "requiredUsername": "Username is required",
     "requiredPassword": "Password is required",
+    "sessionExpired": "Your login session has expired, Please login",
     "signUpSuccessDescription": "Please use your new credentials to log in",
     "signUpSuccessMessage": "New user was created"
   },

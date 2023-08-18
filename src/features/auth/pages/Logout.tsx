@@ -1,5 +1,6 @@
 import React, { useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useQueryClient, useQuery } from 'react-query';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { useAuthContext } from '@app/features/auth/hooks/useAuthContext';
@@ -19,24 +20,33 @@ const Logout: React.FC = () => {
   const profile = readUser();
   const username = profile?.username || '';
 
+  const queryClient = useQueryClient();
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { setIsLogin } = useAuthContext();
   const { mutateAsync: logout } = usePostLogout();
 
-  const doLogout = useCallback(async () => {
+  const { data: forceLogout } = useQuery('Force Logout', () => {
+    return queryClient.getQueryData('Force Logout') || (false as boolean);
+  });
+
+  const doLogout = useCallback(() => {
     if (!username) return;
 
     logout({ username })
       .then()
       .catch((err) => notificationController.error({ message: err.message }))
       .finally(() => {
+        if (forceLogout) {
+          queryClient.setQueryData('Force Logout', false);
+          notificationController.warning({ message: t('auth.sessionExpired') });
+        }
         deleteToken();
         deleteUser();
         setIsLogin(false);
         navigate('/auth/login');
       });
-  }, [logout, setIsLogin, navigate, username]);
+  }, [logout, setIsLogin, navigate, t, username, forceLogout, queryClient]);
 
   useEffect(() => {
     doLogout();
