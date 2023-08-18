@@ -8,6 +8,7 @@
     "sessionExpired": "Sesi kamu telah berakhir. Silakan masuk akun kembali"
   },
   "common": {
+    "back": "Kembali",
     "confirm": "Konfirmasi",
     "email": "Email",
     "error": "Terjadi Kesalahan",

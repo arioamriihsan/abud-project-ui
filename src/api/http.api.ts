@@ -37,9 +37,9 @@ httpApi.interceptors.request.use(
 );
 
 httpApi.interceptors.response.use(undefined, (err: AxiosError) => {
-  const errStatus = err?.response?.status;
+  const errStatus = err?.response?.status || 500;
 
-  if (!!errStatus && [401, 403].includes(errStatus)) {
+  if ([401, 403].includes(errStatus)) {
     queryClient.setQueryData('Force Logout', true);
   }
   throw new ApiError<ApiErrorData>(err.response?.data.message || err.message, err.response?.data);
