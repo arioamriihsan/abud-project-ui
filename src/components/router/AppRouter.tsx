@@ -18,6 +18,8 @@ import NftDashboardPage from '@app/pages/DashboardPages/NftDashboardPage';
 import MedicalDashboardPage from '@app/pages/DashboardPages/MedicalDashboardPage';
 import AutoLogout from './AutoLogout';
 
+import IndividuCustomer from '@app/features/customers/individu/pages/IndividuCustomer';
+
 const NewsFeedPage = React.lazy(() => import('@app/pages/NewsFeedPage'));
 const KanbanPage = React.lazy(() => import('@app/pages/KanbanPage'));
 const DataTablesPage = React.lazy(() => import('@app/pages/DataTablesPage'));
@@ -65,6 +67,7 @@ const Logout = React.lazy(() => import('@app/features/auth/pages/Logout'));
 export const NFT_DASHBOARD_PATH = '/';
 export const MEDICAL_DASHBOARD_PATH = '/medical-dashboard';
 
+const IndividuCustomers = withLoading(IndividuCustomer);
 const MedicalDashboard = withLoading(MedicalDashboardPage);
 const NftDashboard = withLoading(NftDashboardPage);
 const NewsFeed = withLoading(NewsFeedPage);
@@ -134,6 +137,9 @@ export const AppRouter: React.FC = () => {
       <Routes>
         <Route path={NFT_DASHBOARD_PATH} element={protectedLayout}>
           <Route index element={<NftDashboard />} />
+          <Route path="customers">
+            <Route path="individu" element={<IndividuCustomers />} />
+          </Route>
           <Route path={MEDICAL_DASHBOARD_PATH} element={<MedicalDashboard />} />
           <Route path="apps">
             <Route path="feed" element={<NewsFeed />} />
