@@ -1,5 +1,6 @@
 import jwtDecode from 'jwt-decode';
 import dayjs from 'dayjs';
+import { queryClient } from 'core/queryClient';
 import { httpPublic } from '@app/api/http.api';
 import { persistToken } from '@app/services/localStorage.service';
 
@@ -46,11 +47,20 @@ export const checkTokenExpiration = (token: string) => {
   return expiredToken;
 };
 
-export const doRefreshToken = async (): Promise<string> => {
-  const resp = await httpPublic.get<RefreshTokenResponse>('auth/token', {
-    headers: { language: localStorage.getItem('lng') || 'id' },
-  });
-  persistToken(resp?.data?.access_token);
+export const doRefreshToken = async () => {
+  try {
+    const resp = await httpPublic.get<RefreshTokenResponse>('auth/token', {
+      headers: { language: localStorage.getItem('lng') || 'id' },
+    });
+    persistToken(resp?.data?.access_token);
 
-  return resp?.data?.access_token;
+    return resp?.data?.access_token;
+  } catch (err: any) {
+    const errStatus = err?.response?.status || 500;
+    if ([401, 403].includes(errStatus)) {
+      queryClient.setQueryData('Force Logout', true);
+    }
+
+    return '';
+  }
 };

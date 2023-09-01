@@ -9,6 +9,7 @@ import {
   TableOutlined,
   UserOutlined,
   BlockOutlined,
+  IdcardOutlined,
 } from '@ant-design/icons';
 import { ReactComponent as NftIcon } from '@app/assets/icons/nft-icon.svg';
 
@@ -27,6 +28,18 @@ export const sidebarNavigation: SidebarNavigationItem[] = [
     // TODO use path variable
     url: '/',
     icon: <NftIcon />,
+  },
+  {
+    title: 'Daftar Penghadap',
+    key: 'customers',
+    icon: <IdcardOutlined />,
+    children: [
+      {
+        title: 'Individu',
+        key: 'individu',
+        url: '/customers/individu',
+      },
+    ],
   },
   {
     title: 'common.medical-dashboard',
