@@ -7,8 +7,14 @@
     "requiredPassword": "Kata Sandi harus diisi",
     "sessionExpired": "Sesi kamu telah berakhir. Silakan masuk akun kembali"
   },
+  "buttons": {
+    "add": "Tambah Data"
+  },
   "common": {
+    "address": "Alamat",
     "back": "Kembali",
+    "birthday": "Tanggal Lahir",
+    "birthPlace": "Kota Lahir",
     "confirm": "Konfirmasi",
     "email": "Email",
     "error": "Terjadi Kesalahan",
@@ -16,10 +22,17 @@
     "lastName": "Nama Akhir",
     "lock": "Kunci Akun",
     "login": "Masuk Akun",
+    "name": "Nama",
     "password": "Kata Sandi",
     "phone": "Nomor Telepon",
     "userName": "Nama Akun",
     "requiredField": "Field harus diisi!"
+  },
+  "customers": {
+    "apply": "Terapkan",
+    "filter": "Terapkan Data",
+    "tableTitle": "Daftar Data Penghadap",
+    "occupation": "Pekerjaan"
   },
   "header": {
     "changeLanguage": "Ubah bahasa",
