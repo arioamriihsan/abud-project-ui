@@ -18,7 +18,8 @@ import NftDashboardPage from '@app/pages/DashboardPages/NftDashboardPage';
 import MedicalDashboardPage from '@app/pages/DashboardPages/MedicalDashboardPage';
 import AutoLogout from './AutoLogout';
 
-import IndividuCustomer from '@app/features/customers/individu/pages/IndividuCustomer';
+import IndividuCustomer from '@app/features/customers/individu/pages/list-individu/IndividuCustomer';
+import CreateEditIndividu from '@app/features/customers/individu/pages/create-edit-individu/CreateEditIndividu';
 
 const NewsFeedPage = React.lazy(() => import('@app/pages/NewsFeedPage'));
 const KanbanPage = React.lazy(() => import('@app/pages/KanbanPage'));
@@ -139,6 +140,7 @@ export const AppRouter: React.FC = () => {
           <Route index element={<NftDashboard />} />
           <Route path="customers">
             <Route path="individu" element={<IndividuCustomers />} />
+            <Route path="individu/:type" element={<CreateEditIndividu />} />
           </Route>
           <Route path={MEDICAL_DASHBOARD_PATH} element={<MedicalDashboard />} />
           <Route path="apps">

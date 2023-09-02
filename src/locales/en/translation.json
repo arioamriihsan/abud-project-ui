@@ -60,6 +60,7 @@
     "withIcon": "Breadcrumb with icon"
   },
   "buttons": {
+    "add": "Add Data",
     "click": "Click me!",
     "danger": "Danger buttons",
     "dashed": "Dashed",
@@ -131,6 +132,8 @@
     "avatar": "Avatar",
     "back": "Back",
     "badge": "Badge",
+    "birthday": "Birthday",
+    "birthPlace": "Birth Place",
     "breadcrumbs": "Breadcrumbs",
     "button": "Button",
     "calendar": "Calendar",
@@ -240,6 +243,12 @@
     "warning": "Warning",
     "zipcode": "Zipcode",
     "delete": "Delete"
+  },
+  "customers": {
+    "apply": "Apply",
+    "filter": "Filter Data",
+    "tableTitle": "Requester List Data",
+    "occupation": "Occupation"
   },
   "medical-dashboard": {
     "activity": {
